@@ -2807,6 +2807,11 @@ css-what@2.1, css-what@^2.1.2:
   resolved "https://registry.yarnpkg.com/css-what/-/css-what-2.1.3.tgz#a6d7604573365fe74686c3f311c56513d88285f2"
   integrity sha512-a+EPoD+uZiNfh+5fxw2nO9QwFa6nJe2Or35fGY6Ipw1R3R4AGz1d1TEZrCegvw2YTmZ0jXirGYlzxxpYSHwpEg==
 
+css-wipe@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/css-wipe/-/css-wipe-4.3.0.tgz#d9485735a9bf5cb3adcb9fa1809a15686cf5b057"
+  integrity sha1-2UhXNam/XLOty5+hgJoVaGz1sFc=
+
 cssdb@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/cssdb/-/cssdb-4.3.0.tgz#2e1229900616f80c66ff2d568ea2b4f92db1c78c"
