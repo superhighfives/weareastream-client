@@ -67,17 +67,17 @@ class Stream extends React.Component {
 
   render() {
     return (
-      <Player loading={this.state.status == PlayStates.LOADING}>
+      <Player loading={this.state.status === PlayStates.LOADING}>
         <Status>{this.state.status}</Status>
-        {this.state.status == PlayStates.PAUSED && (
+        {this.state.status === PlayStates.PAUSED && (
           <Button onClick={this.play}>
-            <img src={IconPlay} />
+            <img alt="Play icon" src={IconPlay} />
           </Button>
         )}
-        {this.state.status == PlayStates.LOADING ||
-        this.state.status == PlayStates.PLAYING ? (
+        {this.state.status === PlayStates.LOADING ||
+        this.state.status === PlayStates.PLAYING ? (
           <Button onClick={this.pause}>
-            <img src={IconStop} />
+            <img alt="Stop icon" src={IconStop} />
           </Button>
         ) : null}
       </Player>

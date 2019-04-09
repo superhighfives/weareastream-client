@@ -32,7 +32,7 @@ class Background extends Component {
     if (this.props.status === PlayStates.PLAYING) {
       this.image.src = `${process.env.PUBLIC_URL}/assets/images/loop.gif`
     } else {
-      this.image.src = null
+      if (this.state.src) this.setState({ src: '' })
     }
   }
 
