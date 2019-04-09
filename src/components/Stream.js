@@ -4,12 +4,16 @@ import IconPlay from '../svg/icon-play.svg'
 import IconStop from '../svg/icon-stop.svg'
 import Color from '../styles/Color'
 import PlayStates from '../utils/PlayStates'
+import PlayMessages from '../utils/PlayMessages'
 const STREAM_URL = 'http://127.0.0.1:3000/live.mp3'
 
 const Player = styled.div`
-  display: flex;
-  align-items: center;
-  ${props => props.loading && 'opacity: 0.25;'}
+  font-size: 5vw;
+  margin: 2rem;
+  &:hover {
+    opacity: 0.25;
+  }
+  ${props => props.dim && 'opacity: 0.25 !important;'};
 `
 
 const Button = styled.a`
@@ -18,8 +22,9 @@ const Button = styled.a`
   border: none;
   color: ${Color.red};
   cursor: pointer;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 1em;
+  height: 1em;
+  box-sizing: content-box;
 
   img {
     width: 100;
@@ -28,6 +33,7 @@ const Button = styled.a`
 
 const Status = styled.div`
   position: absolute;
+  left: 1em;
   margin-left: 3rem;
   pointer-events: none;
 `
@@ -67,8 +73,13 @@ class Stream extends React.Component {
 
   render() {
     return (
-      <Player loading={this.state.status === PlayStates.LOADING}>
-        <Status>{this.state.status}</Status>
+      <Player
+        dim={
+          this.state.status === PlayStates.LOADING ||
+          this.state.status === PlayStates.PLAYING
+        }
+      >
+        <Status>{PlayMessages.render(this.state.status)}</Status>
         {this.state.status === PlayStates.PAUSED && (
           <Button onClick={this.play}>
             <img alt="Play icon" src={IconPlay} />

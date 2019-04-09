@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import Stream from './Stream'
 import Background from './Background'
 import Globals from '../styles/Globals'
+import PlayStates from '../utils/PlayStates'
 
 class App extends Component {
   constructor() {
     super()
-    this.state = { status: null }
+    this.state = { status: PlayStates.PAUSED }
 
     this.updateStatus = this.updateStatus.bind(this)
   }

@@ -26,11 +26,9 @@ export default createGlobalStyle`
     padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'sf-pro', sans-serif;
     font-weight: 800;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
-    text-align: center;
     position: relative;
-    padding: 2rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
   }
 `
