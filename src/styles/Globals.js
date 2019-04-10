@@ -28,7 +28,12 @@ export default createGlobalStyle`
     font-weight: 800;
     position: relative;
     display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: center;
+
+    &.black {
+      color: ${color.red};
+      background-color: black;
+    }
   }
 `

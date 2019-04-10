@@ -6,7 +6,7 @@ class PlayMessages {
       return 'We Are a Team'
     }
     if (state === PlayStates.LOADING) {
-      return 'Fetching stream...'
+      return 'Joining team'
     }
   }
 }

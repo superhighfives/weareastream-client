@@ -1,41 +1,66 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import IconPlay from '../svg/icon-play.svg'
-import IconStop from '../svg/icon-stop.svg'
-import Color from '../styles/Color'
 import PlayStates from '../utils/PlayStates'
 import PlayMessages from '../utils/PlayMessages'
 const STREAM_URL = 'http://127.0.0.1:3000/live.mp3'
 
-const Player = styled.div`
-  font-size: 5vw;
+const loading = keyframes`
+0% {
+  content: '•··';
+}
+25% {
+  content: '·•·';
+}
+50% {
+  content: '··•';
+}
+75% {
+  content: '···';
+}
+100% {
+  content: '•··';
+}`
+
+const Player = styled.a`
   margin: 2rem;
-  &:hover {
-    opacity: 0.25;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  &:hover,
+  &.loading {
+    opacity: 0.5;
   }
-  ${props => props.dim && 'opacity: 0.25 !important;'};
+
+  &.loading {
+    div::after {
+      padding-left: 0.25rem;
+      font-family: monospace;
+      content: '';
+      animation: ${loading} 2s linear infinite;
+    }
+    cursor: default;
+    img {
+      visibility: hidden;
+    }
+  }
 `
 
-const Button = styled.a`
-  display: block;
-  background: none;
-  border: none;
-  color: ${Color.red};
-  cursor: pointer;
-  width: 1em;
-  height: 1em;
-  box-sizing: content-box;
+const Button = styled.span`
+  width: 3em;
+  height: 3em;
+  margin: 0 auto;
 
   img {
-    width: 100;
+    width: 100%;
   }
 `
 
 const Status = styled.div`
-  position: absolute;
-  left: 1em;
-  margin-left: 3rem;
-  pointer-events: none;
+  margin-top: 1rem;
+  font-size: 1.25rem;
 `
 
 class Stream extends React.Component {
@@ -62,35 +87,17 @@ class Stream extends React.Component {
     }
   }
 
-  pause = () => {
-    if (this.audio) {
-      this.setState({ status: PlayStates.PAUSED })
-      this.audio.src = ''
-      this.audio.pause()
-      this.audio = null
-    }
-  }
-
   render() {
     return (
-      <Player
-        dim={
-          this.state.status === PlayStates.LOADING ||
-          this.state.status === PlayStates.PLAYING
-        }
-      >
-        <Status>{PlayMessages.render(this.state.status)}</Status>
-        {this.state.status === PlayStates.PAUSED && (
-          <Button onClick={this.play}>
-            <img alt="Play icon" src={IconPlay} />
-          </Button>
+      <Player onClick={this.play} className={this.state.status.toLowerCase()}>
+        {this.state.status !== PlayStates.PLAYING && (
+          <>
+            <Button>
+              <img alt="Play icon" src={IconPlay} />
+            </Button>
+            <Status>{PlayMessages.render(this.state.status)}</Status>
+          </>
         )}
-        {this.state.status === PlayStates.LOADING ||
-        this.state.status === PlayStates.PLAYING ? (
-          <Button onClick={this.pause}>
-            <img alt="Stop icon" src={IconStop} />
-          </Button>
-        ) : null}
       </Player>
     )
   }

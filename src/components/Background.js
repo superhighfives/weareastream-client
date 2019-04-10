@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import Color from '../styles/Color'
 import PlayStates from '../utils/PlayStates'
 
 const Backing = styled.div`
@@ -9,7 +8,6 @@ const Backing = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: ${Color.red};
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
