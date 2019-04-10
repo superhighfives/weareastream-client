@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components'
 import IconPlay from '../assets/images/sticker.png'
 import PlayStates from '../utils/PlayStates'
 import PlayMessages from '../utils/PlayMessages'
-const STREAM_URL = 'http://127.0.0.1:3000/live.mp3'
+const STREAM_URL = `${process.env.REACT_APP_AUDIO_SERVER_URL}/live.mp3`
 
 const loading = keyframes`
   0% {
