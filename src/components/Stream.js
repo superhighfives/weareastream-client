@@ -1,26 +1,33 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import IconPlay from '../svg/icon-play.svg'
+import IconPlay from '../assets/images/sticker.png'
 import PlayStates from '../utils/PlayStates'
 import PlayMessages from '../utils/PlayMessages'
 const STREAM_URL = 'http://127.0.0.1:3000/live.mp3'
 
 const loading = keyframes`
-0% {
-  content: '•··';
-}
-25% {
-  content: '·•·';
-}
-50% {
-  content: '··•';
-}
-75% {
-  content: '···';
-}
-100% {
-  content: '•··';
-}`
+  0% {
+    content: '•··';
+  }
+  25% {
+    content: '·•·';
+  }
+  50% {
+    content: '··•';
+  }
+  75% {
+    content: '···';
+  }
+  100% {
+    content: '•··';
+  }
+`
+
+const pulsate = keyframes`
+  50% {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  }
+`
 
 const Player = styled.a`
   margin: 2rem;
@@ -28,13 +35,8 @@ const Player = styled.a`
   flex-direction: column;
   text-align: center;
   cursor: pointer;
-  transition: opacity 0.2s;
-  &:hover,
   &.loading {
     opacity: 0.5;
-  }
-
-  &.loading {
     div::after {
       padding-left: 0.25rem;
       font-family: monospace;
@@ -42,16 +44,20 @@ const Player = styled.a`
       animation: ${loading} 2s linear infinite;
     }
     cursor: default;
-    img {
-      visibility: hidden;
-    }
+  }
+  &.playing {
+    display: none;
   }
 `
 
 const Button = styled.span`
-  width: 3em;
-  height: 3em;
+  width: 10rem;
+  height: 10rem;
   margin: 0 auto;
+  border-radius: 100%;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  animation: ${pulsate} 5s infinite;
 
   img {
     width: 100%;
@@ -59,7 +65,6 @@ const Button = styled.span`
 `
 
 const Status = styled.div`
-  margin-top: 1rem;
   font-size: 1.25rem;
 `
 
@@ -90,13 +95,13 @@ class Stream extends React.Component {
   render() {
     return (
       <Player onClick={this.play} className={this.state.status.toLowerCase()}>
-        {this.state.status !== PlayStates.PLAYING && (
-          <>
-            <Button>
-              <img alt="Play icon" src={IconPlay} />
-            </Button>
-            <Status>{PlayMessages.render(this.state.status)}</Status>
-          </>
+        {this.state.status === PlayStates.PAUSED && (
+          <Button>
+            <img alt="Play icon" src={IconPlay} />
+          </Button>
+        )}
+        {this.state.status === PlayStates.LOADING && (
+          <Status>{PlayMessages.render(this.state.status)}</Status>
         )}
       </Player>
     )
