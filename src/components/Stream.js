@@ -30,10 +30,17 @@ const pulsate = keyframes`
 `
 
 const Player = styled.a`
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   margin: 2rem;
   display: flex;
   flex-direction: column;
   text-align: center;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   &.loading {
     opacity: 0.5;
