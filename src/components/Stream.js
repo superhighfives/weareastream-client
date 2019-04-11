@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import IconPlay from '../assets/images/sticker.png'
+import Logo from '../assets/images/sticker.png'
 import PlayStates from '../utils/PlayStates'
 import PlayMessages from '../utils/PlayMessages'
 const STREAM_URL = `${process.env.REACT_APP_AUDIO_SERVER_URL}/live.mp3`
@@ -97,7 +97,7 @@ class Stream extends React.Component {
       <Player onClick={this.play} className={this.state.status.toLowerCase()}>
         {this.state.status === PlayStates.PAUSED && (
           <Button>
-            <img alt="Play icon" src={IconPlay} />
+            <img alt="Stream 'We Are a Team'" src={Logo} />
           </Button>
         )}
         {this.state.status === PlayStates.LOADING && (

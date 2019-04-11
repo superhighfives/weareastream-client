@@ -17,7 +17,7 @@ const Backing = styled.div`
 class Background extends Component {
   constructor() {
     super()
-    this.state = { src: false }
+    this.state = { src: '' }
   }
   componentDidMount() {
     this.image = new window.Image()
