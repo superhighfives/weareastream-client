@@ -71,7 +71,6 @@ const Button = styled.div`
     content: '';
     position: absolute;
     z-index: -1;
-    background: blue;
     width: 100%;
     height: 100%;
     top: 0;
