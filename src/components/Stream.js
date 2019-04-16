@@ -24,8 +24,11 @@ const loading = keyframes`
 `
 
 const pulsate = keyframes`
+  0%, 100% {
+    opacity: 0;
+  }
   50% {
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    opacity: 1;
   }
 `
 
@@ -50,17 +53,32 @@ const Player = styled.a`
   }
 `
 
-const Button = styled.span`
+const Button = styled.div`
   width: 10rem;
   height: 10rem;
   margin: 0 auto;
   border-radius: 100%;
-  overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  animation: ${pulsate} 5s infinite;
+  position: relative;
+  z-index: 0;
 
   img {
+    border-radius: 100%;
     width: 100%;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    background: blue;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 100%;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    animation: ${pulsate} 5s ease-in-out infinite;
   }
 `
 
@@ -93,7 +111,7 @@ class Stream extends React.Component {
     return (
       <Player onClick={this.play} className={this.state.status.toLowerCase()}>
         {this.state.status === PlayStates.PAUSED && (
-          <Button>
+          <Button role="button">
             <img alt="Stream 'We Are a Team'" src={Logo} />
           </Button>
         )}
