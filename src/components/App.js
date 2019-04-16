@@ -5,14 +5,9 @@ import Globals from '../styles/Globals'
 import PlayStates from '../utils/PlayStates'
 
 class App extends Component {
-  constructor() {
-    super()
-    this.state = { status: PlayStates.PAUSED }
+  state = { status: PlayStates.PAUSED }
 
-    this.updateStatus = this.updateStatus.bind(this)
-  }
-
-  updateStatus(status) {
+  updateStatus = status => {
     if (status !== this.state.status) {
       this.setState({ status: status })
     }

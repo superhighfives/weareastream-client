@@ -14,28 +14,24 @@ const Backing = styled.div`
   z-index: -1;
 `
 
+const GIF_URL = `${process.env.PUBLIC_URL}/assets/images/loop.gif`
+
 class Background extends Component {
-  constructor() {
-    super()
-    this.state = { src: '' }
-  }
+  state = { ready: false }
+
   componentDidMount() {
     this.image = new window.Image()
     this.image.onload = () => {
-      this.setState({ src: this.image.src })
+      this.setState({ ready: true })
     }
-  }
-
-  componentDidUpdate() {
-    if (this.props.status === PlayStates.PLAYING) {
-      this.image.src = `${process.env.PUBLIC_URL}/assets/images/loop.gif`
-    } else {
-      if (this.state.src) this.setState({ src: '' })
-    }
+    this.image.src = GIF_URL
   }
 
   render() {
-    return <Backing style={{ backgroundImage: `url(${this.state.src})` }} />
+    const playing = this.props.status === PlayStates.PLAYING
+    const { ready } = this.state
+    const url = playing && ready ? GIF_URL : ''
+    return <Backing style={{ backgroundImage: `url('${url}')` }} />
   }
 }
 
