@@ -69,10 +69,7 @@ const Status = styled.div`
 `
 
 class Stream extends React.Component {
-  constructor() {
-    super()
-    this.state = { status: PlayStates.PAUSED }
-  }
+  state = { status: PlayStates.PAUSED }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.status !== prevState.status) {
