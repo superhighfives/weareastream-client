@@ -20,6 +20,10 @@ There are three states, set using the `REACT_APP_LAUNCH_STATUS` env var before b
 
 The app listens for audio at https://server.weareateam.stream.
 
+## Links
+
+- [weareastream-server](https://github.com/superhighfives/weareastream-client)
+
 ---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
