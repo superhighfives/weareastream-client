@@ -32,15 +32,6 @@ const pulsate = keyframes`
   }
 `
 
-const glow = keyframes`
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.75;
-  }
-`
-
 const Player = styled.a`
   margin: 2rem;
   display: flex;
@@ -52,7 +43,7 @@ const Player = styled.a`
     div::after {
       padding-left: 0.25rem;
       font-family: monospace;
-      content: '';
+      content: '···';
       animation: ${loading} 2s linear infinite;
     }
     cursor: default;
@@ -102,7 +93,6 @@ const Button = styled.div`
 
 const Status = styled.div`
   font-size: 1.25rem;
-  animation: ${glow} 4s ease-in-out infinite;
 `
 
 class Stream extends React.Component {
