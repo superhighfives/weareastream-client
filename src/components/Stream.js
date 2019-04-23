@@ -32,6 +32,15 @@ const pulsate = keyframes`
   }
 `
 
+const glow = keyframes`
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.75;
+  }
+`
+
 const Player = styled.a`
   margin: 2rem;
   display: flex;
@@ -61,6 +70,16 @@ const Button = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   position: relative;
   z-index: 0;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:focus,
+  &:active {
+    opacity: 0.6;
+  }
 
   img {
     border-radius: 100%;
@@ -83,6 +102,7 @@ const Button = styled.div`
 
 const Status = styled.div`
   font-size: 1.25rem;
+  animation: ${glow} 4s ease-in-out infinite;
 `
 
 class Stream extends React.Component {
