@@ -60,7 +60,7 @@ const Button = styled.a`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   position: relative;
   z-index: 0;
-  transition: opacity 0.2s, border 0.3s;
+  transition: opacity 0.2s;
   box-sizing: content-box;
 
   &:hover,
