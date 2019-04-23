@@ -32,12 +32,11 @@ const pulsate = keyframes`
   }
 `
 
-const Player = styled.a`
+const Player = styled.div`
   margin: 2rem;
   display: flex;
   flex-direction: column;
   text-align: center;
-  cursor: pointer;
   &.loading {
     opacity: 0.5;
     div::after {
@@ -53,7 +52,7 @@ const Player = styled.a`
   }
 `
 
-const Button = styled.div`
+const Button = styled.a`
   width: 10rem;
   height: 10rem;
   margin: 0 auto;
@@ -61,15 +60,17 @@ const Button = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   position: relative;
   z-index: 0;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, border 0.3s;
+  box-sizing: content-box;
 
-  &:hover {
+  &:hover,
+  &:active {
     opacity: 0.8;
   }
 
-  &:focus,
-  &:active {
-    opacity: 0.6;
+  &:focus {
+    outline: none;
+    border: 2px solid rgba(0, 0, 0, 0.1);
   }
 
   img {
@@ -118,10 +119,10 @@ class Stream extends React.Component {
 
   render() {
     return (
-      <Player onClick={this.play} className={this.state.status.toLowerCase()}>
+      <Player className={this.state.status.toLowerCase()}>
         {this.state.status === PlayStates.PAUSED && (
-          <Button role="button">
-            <img alt="Stream 'We Are a Team'" src={Logo} />
+          <Button href="#" onClick={this.play}>
+            <img alt="St ream 'We Are a Team'" src={Logo} />
           </Button>
         )}
         {this.state.status === PlayStates.LOADING && (
