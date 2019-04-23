@@ -14,11 +14,6 @@ export default createGlobalStyle`
     font-style: normal;
   }
 
-  html,
-  body {
-    min-height: 100vh;
-  }
-
   body {
     position: fixed;
     top: 0;
@@ -32,14 +27,8 @@ export default createGlobalStyle`
     padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'sf-pro', sans-serif;
     font-weight: 800;
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    &.black {
-      color: ${color.red};
-      background-color: black;
-    }
   }
 `
