@@ -1,5 +1,11 @@
 # weareastream-client
 
+> **Archived / historical.** This is the original 2019 Create React App client,
+> deployed to Surge. It has been superseded by
+> [**superhighfives/weareastream**](https://github.com/superhighfives/weareastream),
+> which collapses this client and the [server](https://github.com/superhighfives/weareastream-server)
+> into a single Bun app on Fly.io. Kept for reference.
+
 ---
 
 The client for https://weareateam.stream, hosted on Surge.
