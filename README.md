@@ -1,14 +1,16 @@
 # weareastream-client
 
-> **Archived / historical.** This is the original 2019 Create React App client,
-> deployed to Surge. It has been superseded by
-> [**superhighfives/weareastream**](https://github.com/superhighfives/weareastream),
-> which collapses this client and the [server](https://github.com/superhighfives/weareastream-server)
-> into a single Bun app on Fly.io. Kept for reference.
+The client for https://weareateam.stream, an always-on stream of Ceres' album _We Are a Team_ playing on an endless loop. Everyone who tuned in heard the same moment, like a radio station.
 
----
+Status: archived. Made in 2019. This is the original client, which was hosted on Surge and played audio from a separate server, [weareastream-server](https://github.com/superhighfives/weareastream-server). The weareateam.stream domain is no longer live. [superhighfives/weareastream](https://github.com/superhighfives/weareastream) is the current version, which combines this client and the server into a single Bun app on Fly.io, live at https://weareastream.superhighfives.com.
 
-The client for https://weareateam.stream, hosted on Surge.
+## Running it
+
+Copy `.env.sample` to `.env`. `REACT_APP_AUDIO_SERVER_URL` is the server the app streams `/live.mp3` from, and `REACT_APP_LAUNCH_STATUS` sets which of three states gets built: `prelaunch` shows the launch date, `live` builds the player, and `postlaunch` shows "We Were a Team" once it was over.
+
+```
+yarn start
+```
 
 To deploy to staging, https://weareastream.surge.sh:
 
@@ -22,42 +24,11 @@ To deploy to production, https://weareateam.stream:
 yarn deploy-prod
 ```
 
-There are three states, set using the `REACT_APP_LAUNCH_STATUS` env var before build. `prelaunch` displays the launch date, `postlaunch` displays a message that the project is closed, and `live` builds the app.
+## How it works
 
-The app listens for audio at https://server.weareateam.stream.
+A Create React App site with styled-components, prerendered with `react-snap` after each build. The player is a single `Audio` object pointed at the server's live MP3 stream, so there's no seeking: you join wherever the record happens to be.
 
 ## Links
 
-- [weareastream-server](https://github.com/superhighfives/weareastream-client)
-
----
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [weareastream-server](https://github.com/superhighfives/weareastream-server)
+- [weareastream](https://github.com/superhighfives/weareastream), the current version
